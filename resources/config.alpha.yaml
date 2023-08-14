@@ -1,0 +1,10 @@
+awsRegion: us-east-1
+# Add any config specific to dev deployments here
+cloudFrontCommentPurpose: Alpha Build - DO NOT DELETE
+awsCloudFrontOAI: E398CCQT5R1MTT
+priceClass: PriceClass_100 #Use Only U.S., Canada and Europe
+# Bridge domain name
+domainName: alpha-bridge.cloud
+# Cloud Front Aliases
+aliases: alpha-bridge.cloud
+bridgeCloudHostedZoneId: Z01408932WPJ4NSSJ0D6O # cspell:disable-line

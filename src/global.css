@@ -1,0 +1,239 @@
+/**
+ * Tailwind CSS imports
+ * View the full documentation at https://tailwindcss.com
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * WHAT IS THIS FILE?
+ *
+ * Globally applied styles. No matter which components are in the page or matching route,
+ * the styles in here will be applied to the Document, without any sort of CSS scoping.
+ *
+ */
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+body {
+  padding: 0;
+  line-height: inherit;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-5xl font-extrabold dark:text-white;
+  }
+
+  h2 {
+    @apply text-4xl font-bold dark:text-white;
+  }
+
+  h3 {
+    @apply text-3xl font-bold dark:text-white;
+  }
+
+  h4 {
+    @apply text-2xl font-bold dark:text-white;
+  }
+
+  h5 {
+    @apply text-xl font-bold dark:text-white;
+  }
+}
+
+@layer utilities {
+  /** secondary text to headings **/
+  .secondary-text {
+    @apply font-light text-gray-500 dark:text-gray-400;
+  }
+
+  .error-text {
+    @apply font-medium text-red-600 dark:text-red-500;
+  }
+
+  .success-text {
+    @apply font-medium text-green-500 dark:text-green-400;
+  }
+}
+
+@layer components {
+  /** input field **/
+  .input-default {
+    @apply block w-full rounded border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm;
+  }
+
+  .input-error {
+    @apply block w-full rounded border border-red-500 bg-red-50 p-2.5 text-sm text-red-900 placeholder-red-700 focus:border-red-500 focus:ring-red-500 dark:border-red-400 dark:bg-red-100;
+  }
+
+  .input-read-only {
+    @apply block w-full cursor-not-allowed rounded border border-gray-300 bg-gray-100 p-2.5 text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-500 dark:placeholder:text-gray-400 sm:text-sm;
+  }
+
+  /** button **/
+  .btn-default {
+    @apply w-full rounded bg-primary-600 text-center font-medium text-white focus:outline-none focus:ring-4 focus:ring-primary-300 enabled:hover:bg-primary-700 dark:bg-primary-600 dark:focus:ring-primary-800 dark:enabled:hover:bg-primary-700;
+  }
+
+  .btn-disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .btn-disabled > svg {
+    pointer-events: none;
+  }
+
+  .btn-link {
+    @apply rounded font-medium text-primary-600 focus:outline-none enabled:hover:underline dark:text-primary-300 lg:px-5 lg:py-2.5;
+  }
+
+  .btn-outline {
+    /** referred as light in Flowbite **/
+    @apply rounded border border-gray-300 bg-transparent font-medium text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-200 enabled:hover:bg-gray-100 dark:border-gray-600 dark:bg-transparent dark:text-white dark:focus:ring-gray-700 dark:enabled:hover:border-gray-600 dark:enabled:hover:bg-gray-700;
+  }
+
+  /** btn-warning-red used for confirming risky actions like delete operations **/
+  .btn-warning-red {
+    @apply inline-flex items-center rounded bg-red-600 text-center font-medium text-white focus:outline-none focus:ring-4 focus:ring-red-300 enabled:hover:bg-red-800 dark:bg-red-700 dark:focus:ring-red-500 dark:enabled:hover:bg-red-800;
+  }
+
+  .btn-xs {
+    @apply px-3 py-2 text-xs;
+  }
+
+  .btn-sm {
+    @apply px-3 py-2 text-sm;
+  }
+
+  .btn-md {
+    @apply px-5 py-2.5 text-sm;
+  }
+
+  /** Alert **/
+  .alert {
+    @apply mb-4 flex rounded p-4;
+  }
+
+  .alert-info {
+    @apply border border-blue-300 bg-blue-50 text-blue-800 dark:border-blue-800 dark:bg-gray-800 dark:text-blue-400;
+  }
+
+  .alert-error {
+    @apply border border-red-300 bg-red-50 text-red-800 dark:border-red-800 dark:bg-gray-800 dark:text-red-400;
+  }
+
+  .alert-warning {
+    @apply border border-yellow-300 bg-yellow-50 text-yellow-800 dark:border-yellow-800 dark:bg-gray-800 dark:text-yellow-400;
+  }
+
+  .alert-success {
+    @apply border border-green-300 bg-green-50 text-green-800 dark:border-green-800 dark:bg-gray-800 dark:text-green-400;
+  }
+
+  .alert-btn {
+    @apply -m-1.5 ml-auto inline-flex h-8 w-8 rounded p-1.5 focus:ring-2;
+  }
+
+  .alert-info-btn {
+    @apply bg-blue-50 text-blue-500 hover:bg-blue-200 focus:ring-blue-400 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700;
+  }
+
+  .alert-error-btn {
+    @apply bg-red-50 text-red-500 hover:bg-red-200 focus:ring-red-400 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700;
+  }
+
+  .alert-warning-btn {
+    @apply bg-yellow-50 text-yellow-500 hover:bg-yellow-200 focus:ring-yellow-400 dark:bg-gray-800 dark:text-yellow-400 dark:hover:bg-gray-700;
+  }
+
+  .alert-success-btn {
+    @apply bg-green-50 text-green-500 hover:bg-green-200 focus:ring-green-400 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700;
+  }
+
+  .alert-action-btn {
+    @apply rounded border bg-transparent px-3 py-1.5 text-center text-xs font-medium hover:text-white focus:outline-none focus:ring-4  dark:hover:text-white;
+  }
+
+  .alert-info-action-btn {
+    @apply border-blue-800 text-blue-800 hover:bg-blue-900 focus:ring-blue-200 dark:border-blue-600 dark:text-blue-400 dark:hover:bg-blue-600 dark:focus:ring-blue-800;
+  }
+
+  .alert-error-action-btn {
+    @apply border-red-800 text-red-800 hover:bg-red-900 focus:ring-red-200 dark:border-red-600 dark:text-red-400 dark:hover:bg-red-600 dark:focus:ring-red-800;
+  }
+
+  .alert-warning-action-btn {
+    @apply border-yellow-800 text-yellow-800 hover:bg-yellow-900 focus:ring-yellow-200 dark:border-yellow-600 dark:text-yellow-400 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800;
+  }
+
+  .alert-success-action-btn {
+    @apply border-green-800 text-green-800 hover:bg-green-900 focus:ring-green-200 dark:border-green-600 dark:text-green-400 dark:hover:bg-green-600 dark:focus:ring-green-800;
+  }
+
+  /** Dropdown **/
+  .dropdown-toggle {
+    @apply inline-flex w-full items-center rounded border border-gray-300 bg-gray-50 px-4 py-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm;
+  }
+
+  .dropdown-menu {
+    @apply w-auto rounded bg-white shadow dark:bg-gray-700;
+  }
+
+  .dropdown-menu > ul {
+    @apply w-full py-2 text-sm text-gray-700 dark:text-gray-200;
+  }
+
+  .dropdown-menu button {
+    @apply block w-full px-4 py-2 text-left text-sm text-gray-900 no-underline hover:bg-gray-100 enabled:hover:no-underline dark:text-white dark:hover:bg-gray-600 dark:hover:text-white;
+  }
+
+  /** Card **/
+  .card {
+    @apply rounded border border-gray-200 bg-white p-4 shadow-xl dark:border-gray-700 dark:bg-gray-800 sm:p-8;
+  }
+
+  .nested-card {
+    @apply flex items-center rounded bg-gray-100 px-6 py-4 text-base font-bold text-gray-900 hover:bg-gray-100 hover:shadow dark:bg-gray-700 dark:text-white dark:hover:outline dark:hover:outline-2 dark:hover:outline-gray-600;
+  }
+
+  /** Sidenav **/
+  .sidenav {
+    @apply h-full transform-none overflow-y-auto border-r border-gray-200 bg-white py-5 transition-transform dark:border-gray-700 dark:bg-gray-800;
+  }
+
+  .sidenav-item {
+    @apply inline-flex w-full items-center overflow-hidden px-5 py-2.5 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700;
+  }
+
+  .sidenav .active {
+    @apply bg-gray-100 dark:bg-gray-900;
+  }
+
+  .expanded {
+    @apply w-auto;
+  }
+
+  .collapsed {
+    @apply w-20;
+  }
+
+  .collapsed span {
+    @apply hidden;
+  }
+
+  /** Modal **/
+  .modal-header-close-icon {
+    @apply ml-auto inline-flex items-center rounded bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white;
+  }
+}

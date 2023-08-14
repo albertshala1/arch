@@ -1,0 +1,11 @@
+awsRegion: us-east-1
+# Add any config specific to dev deployments here
+cloudFrontCommentPurpose: Dev Build
+awsCloudFrontOAI: E398CCQT5R1MTT
+priceClass: PriceClass_100 #Use Only U.S., Canada and Europe
+# cloud one domain name
+domainName: unused.alpha-bridge.cloud
+# Cloud Front Aliases
+aliases: alpha-bridge.cloud
+# Route53 Stack reference used to create/update SSL certificates
+bridgeCloudHostedZoneId: none

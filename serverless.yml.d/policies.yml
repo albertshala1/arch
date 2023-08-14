@@ -1,0 +1,73 @@
+Resources:
+  ### S3 Bucket Cache Policies
+  StaticContentS3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: StaticContent
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontAccess
+            Effect: Allow
+            Principal: "*"
+            Action:
+              - s3:GetObject
+            Resource: !Sub ${StaticContent.Arn}/*
+            Condition:
+              StringEquals:
+                aws:Referer: ${self:custom.bucketReferer}
+
+  ### CloudFront Cache Policies
+  BridgeCloudFrontCachePolicyForWebAssets:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        Comment: "CloudFront Cache Policy for Static Web Assets for ${self:custom.serviceName} (${self:provider.stage}"
+        DefaultTTL: 900 # 15 mins - only applicable when Cache-Control headers are not specified from origin
+        MaxTTL: 900 # 15 mins - only applicable when Cache-Control headers are not specified from origin
+        MinTTL: 0
+        Name: !Ref AWS::StackName
+        ParametersInCacheKeyAndForwardedToOrigin:
+          CookiesConfig:
+            CookieBehavior: none
+          EnableAcceptEncodingBrotli: true
+          EnableAcceptEncodingGzip: true
+          HeadersConfig:
+            HeaderBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: "all"
+
+  BridgeCloudFrontCachePolicyCachingDisabled:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        Comment: "CloudFront Cache Policy for API and SSR"
+        DefaultTTL: 0
+        MaxTTL: 0
+        MinTTL: 0
+        Name: "${self:custom.serviceName}-${self:provider.stage}-disabled-cache-policy"
+        ParametersInCacheKeyAndForwardedToOrigin:
+          CookiesConfig:
+            CookieBehavior: none
+          EnableAcceptEncodingBrotli: false
+          EnableAcceptEncodingGzip: false
+          HeadersConfig:
+            HeaderBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: none
+
+  BridgeCloudFrontOriginRequestPolicyAllParam:
+    Type: AWS::CloudFront::OriginRequestPolicy
+    Properties:
+      OriginRequestPolicyConfig:
+        Comment: "CloudFront Origin Request Policy to forward all parameters in viewer requests"
+        CookiesConfig:
+          CookieBehavior: all
+        HeadersConfig:
+          HeaderBehavior: allViewerAndWhitelistCloudFront
+          Headers:
+            - CloudFront-Viewer-Address
+        Name: "${self:custom.serviceName}-${self:provider.stage}-all-param-origin-request-policy"
+        QueryStringsConfig:
+          QueryStringBehavior: all
